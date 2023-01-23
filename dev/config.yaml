@@ -1,0 +1,7 @@
+scenario:
+  interval: 120
+  window: 300
+  category: recat
+  mode: mix
+
+dt: 10
