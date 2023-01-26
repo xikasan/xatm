@@ -1,5 +1,5 @@
 scenario:
-  interval: 120
+  interval: 60
   window: 300
   category: recat
   mode: mix
