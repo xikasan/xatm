@@ -19,7 +19,7 @@ class Scenario:
 
     def __len__(self):
         return len(self._vols)
-
+ 
     def __iter__(self):
         return ScenarioIterator(self._vols)
 
