@@ -73,6 +73,7 @@ if __name__ == '__main__':
 
     print("Scenario:")
     print(vols.to_dataframe())
+    exit()
 
     separation: Separation = recat.TBS
 
