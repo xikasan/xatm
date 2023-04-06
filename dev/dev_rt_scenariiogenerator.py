@@ -16,9 +16,9 @@ from atm.simulator.stripe import Stripe
 if __name__ == '__main__':
     dt = 1
     parameter = dict(
-        interval=180,
+        interval=60,
         window=dict(
-            min=int(10*60),
+            min=int(5*60),
             shift=int(3*60),
         ),
         mode="M",

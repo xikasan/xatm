@@ -124,12 +124,28 @@ class SeparationPatternTable(DiscreteSeparation):
             r1, d1 = vol1.ready, vol1.due
             r2, d2 = vol2.ready, vol2.due
 
+        c1, o1 = Separation._to_category_and_operation(vol1)
+        c2, o2 = Separation._to_category_and_operation(vol2)
+
+        index1, index2 = self._index["leader"], self._index["follower"]
+        if index1 and index2:
+            tb = self.table[o1][o2]
+        elif index1 and (not index2):
+            tb = self.table[o1]
+        elif (not index1) and index2:
+            tb = self.table[o2]
+        elif (not index1) and (not index2):
+            tb = self.table
+        slot = tb[c1][c2]
+
         dmax = self.max_window_size // self._dt
         w1 = d1 - r1
         w2 = d2 - r2
         # return zeros if in out of table
         # left of table
         if d2 - r1 < 0:
+            return np.zeros((w1, w2))
+        if d1 + slot < r2:
             return np.zeros((w1, w2))
 
         # r1_, d1_ = r1 - r1 + dmax, d1 - r1 + dmax

@@ -8,12 +8,13 @@ class DiscreteSeparation(Separation):
 
     def __init__(self, data: Dict[str, Dict], dt: int = 10):
         super().__init__(data)
+        self._data = data
         self._dt: int = dt
         self._table = self._discretize()
 
     def _discretize(self):
         cat_index = self.operation_index()
-        return self.discretizers[cat_index](self._table)
+        return self.discretizers[cat_index](self._data["table"])
 
     @property
     def discretizers(self) -> Dict[Tuple[bool, bool], Callable]:

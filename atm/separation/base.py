@@ -14,8 +14,8 @@ class Separation:
         self._call_func: Callable = self.retrievers[self.operation_index()]
 
     def __call__(self, leader: Flight, follower: Flight) -> int:
-        lc, lo = self.__to_category_and_operation(leader)
-        fc, fo = self.__to_category_and_operation(follower)
+        lc, lo = self._to_category_and_operation(leader)
+        fc, fo = self._to_category_and_operation(follower)
         return self._call_func(lo, fo)[lc][fc]
 
     def _retrieve_separation_with_follower_operation(
@@ -51,5 +51,5 @@ class Separation:
         return self._index["leader"], self._index["follower"]
 
     @staticmethod
-    def __to_category_and_operation(vol) -> Tuple[Category, Operation]:
+    def _to_category_and_operation(vol) -> Tuple[Category, Operation]:
         return vol.category.symbol, vol.operation.symbol
