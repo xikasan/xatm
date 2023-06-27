@@ -90,16 +90,7 @@ def check_over_time_for_multi_runway(assigned_times: List[NP], dues: List[NP]) -
 
 
 def count_num_overtime(is_overtimes: NP) -> int:
-    return np.sum(np.asarray(is_overtimes).astype(int)).item()
-
-
-def calc_assign_time_for_multiple_runway(scenario: Scenario, separation: Separation, penalty_coef: float = 1.0) -> Callable:
-    def func(xs):
-        times = calc_assign_time_for_multi_runway(xs, scenario, separation)
-        delays = calc_delay_for_multi_runway(xs, times, scenario)
-        dues = get_due_for_multi_runway(xs, scenario)
-        is_overtimes = check_over_time_for_multi_runway(times, dues)
-        num_overtime = count_num_overtime(is_overtimes)
-
-        return np.mean(delays).astype(float) + penalty_coef * num_overtime
-    return func
+    return np.sum([
+        np.sum(np.asarray(is_overtimes_).astype(int))
+        for is_overtimes_ in is_overtimes
+    ]).item()
