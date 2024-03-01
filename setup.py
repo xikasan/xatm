@@ -13,13 +13,13 @@ with open('requirements.txt') as f:
     reqs = f.read().splitlines()
 
 setup(
-    name='atm',
+    name='xatm',
     version='0.0.1',
     description="Tools for study of air traffic management",
     long_description=readme,
     author='xikasan',
     # author_email='',
-    url='https://github.com/xikasan/xtools',
+    url='https://github.com/xikasan/xatm',
     license=license,
     packages=find_packages(exclude=('tests', 'docs')),
     install_requires=reqs
